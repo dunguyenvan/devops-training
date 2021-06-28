@@ -69,8 +69,8 @@ pipeline {
             steps{
                 script {
                   docker.withRegistry( '', registryCredential ) {
-                     //sh 'docker container stop docker-trraining'
-                     //sh 'docker container rm docker-trraining'
+                     sh 'docker container stop docker-trraining'
+                     sh 'docker container rm docker-trraining'
                      sh 'docker container run -it -d -p 3000:8080  --name docker-trraining '+registry + ":$BUILD_NUMBER"+''
                      echo 'DevOps Training application is up.'
                      slackSend(channel: slackResponse.channelId, message: "Build: ${env.JOB_NAME} Completed Successfuly ${env.BUILD_URL}", timestamp: slackResponse.ts)
